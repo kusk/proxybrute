@@ -4,7 +4,7 @@ import sys
 import _thread
 
 p1 = ProxyList()
-p1.load_file('big')
+p1.load_file('big.list')
 print("Starting 15 threads each with 5000 tries")
 
 def get_site(threadName, none):
