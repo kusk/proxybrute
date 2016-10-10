@@ -3,6 +3,10 @@ import requests
 import sys
 import _thread
 
+if len(sys.argv) < 2:
+    print("ProxyBrute.py - Missing arguments - [URL]")
+    sys.exit(0)
+
 p1 = ProxyList()
 p1.load_file('big.list')
 print("Starting 15 threads each with 5000 tries")
@@ -13,7 +17,7 @@ def get_site(threadName, none):
         proxies = { 'http': 'http://'+p1.random().address() }
         count = count-1
         try:
-            out = requests.get('http://google.com', proxies=proxies, timeout=5)
+            out = requests.get(sys.argv[1], proxies=proxies, timeout=5)
             print('Thread: '+threadName+'\t Proxy: '+str(proxies)+'\t URL: '+out.url)
         except requests.exceptions.ConnectTimeout:
             continue
